@@ -61,6 +61,104 @@
 
   </header>
 
+  <!-- Main Section -->
+  <main class="bg-[#F8FAFC] ">
+
+    <!-- Track and manage your project issues section -->
+    <section class="paddingXl ">
+      <div class="containers space-y-5">
+
+
+        <!-- 3 button -->
+        <div class="flex gap-2 bg-white py-5 px-2 customShadow rounded-lg">
+          <div>
+            <button onclick="showAllIssues()" id="allButton" class="btnAll btn btn-primary">All</button>
+          </div>
+
+          <div>
+            <button onclick="showOpenIssues()" id="openButton" class="btn btnAll">Open</button>
+          </div>
+
+          <div>
+            <button onclick="showClosedIssues()" id="ClosedButton" class="btn btnAll">Closed</button>
+          </div>
+        </div>
+
+
+        <!-- 50 issues -->
+        <div
+          class="bg-white py-3 px-2 customShadow rounded-lg flex flex-col justify-center items-center sm:flex-row sm:justify-between">
+
+          <!-- left section -->
+          <div class="flex items-center gap-2">
+
+            <div class="bg-[#ECE4FF] max-w-max p-3 rounded-full cursor-pointer">
+              <img src="../assets/icons/issues.png" alt="icons">
+            </div>
+
+            <!-- detail -->
+            <div>
+              <h2 id="issuesCount" class="text-lg font-medium"></h2>
+              <p>Track and manage your project issues</p>
+            </div>
+
+          </div>
+
+          <!-- right section  -->
+          <div class="flex gap-4">
+            <div class="flex gap-2 items-center">
+              <p class=" bg-[#00A96E] p-1 rounded-full max-w-max"></p>
+              <p class="text-lg font-medium">Open</p>
+            </div>
+
+            <div class="flex gap-2 items-center">
+              <p class=" bg-[#A855F7] p-1 rounded-full max-w-max"></p>
+              <p class="text-lg font-medium">Closed</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- loading section -->
+    <Section id="loadingSection" class="hidden">
+      <div class="containers flex items-center justify-center">
+        <span class="loading loading-spinner text-success"></span>
+      </div>
+    </Section>
+
+
+    <!-- Card Section  -->
+    <Section id="">
+      <div class="containers">
+
+        <!-- card area -->
+        <div id="CardContainers"
+          class="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 items-stretch">
+
+          <!-- all Data render Open Closed And All -->
+
+        </div>
+
+      </div>
+    </Section>
+
+    <!-- Modal section -->
+    <div>
+
+      <dialog id="my_modal_4" class="modal">
+        <div id="modalContent" class="modal-box px-3">
+
+          <!-- data -->
+
+        </div>
+      </dialog>
+    </div>
+
+  </main>
+
 
 </body>
 
