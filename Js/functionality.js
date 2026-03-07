@@ -56,7 +56,7 @@ const displayAllIssuesData = data => {
 
   data.forEach(item => {
     const itemDiv = document.createElement('div');
-    itemDiv.className = `bg-white border-t-4
+    itemDiv.className = `bg-white border-t-4 transition duration-300 hover:-translate-y-1 cursor-pointer 
      ${item.status === 'open' ? 'border-success' : 'border-[#A855F7]'} px-5 py-4 rounded-lg cardCustomShadow space-y-3`;
 
     // Click To Open Modal
@@ -105,13 +105,13 @@ const displayAllIssuesData = data => {
                 <div
                   class="bg-readColor/10 max-w-max px-3 py-1 rounded-full gap-1 flex items-center border border-readColor/30">
                   <img src="../assets/icons/BugDroid.png" alt="icons" class="">
-                  <h2 class="text-readColor text-[13px] uppercase">${item?.labels[0]}</h2>
+                  <h2 class="text-readColor text-[13px] uppercase">${item?.labels?.[0] || 'N/A'}</h2>
                 </div>
 
                 <!-- help wanted -->
                 <div
                   class=" max-w-max px-3 py-1 rounded-full flex items-center border ${
-                    item?.labels[1] === 'enhancement'
+                    item?.labels?.[1] === 'enhancement'
                       ? 'bg-[#BBF7D0]/25 border-[#00A96E]/20'
                       : 'bg-warningLight/80 border-warningColor'
                   }">
@@ -120,7 +120,7 @@ const displayAllIssuesData = data => {
                     item?.labels[1] === 'enhancement'
                       ? 'text-success bg-[#BBF7D0]'
                       : 'text-warningColor'
-                  } badge text-[13px] uppercase">${item?.labels[1]}</h2>
+                  } badge text-[13px] uppercase">${item?.labels?.[1] || 'N/A'}</h2>
                 </div>
 
 
@@ -139,6 +139,7 @@ const displayAllIssuesData = data => {
     getIssuesCount.innerHTML = `${allIssues.length} Issues`;
     cardContainer.appendChild(itemDiv);
   });
+
   loadingEffect(false);
 };
 
@@ -195,8 +196,6 @@ const showModalDataFetch = async id => {
 };
 
 const showModalDataDisplay = data => {
-  console.log(data);
-
   const priorityColor = {
     high: 'bg-red-500/10 text-red-500',
     medium: 'bg-yellow-500/10 text-yellow-500',
@@ -222,7 +221,7 @@ const showModalDataDisplay = data => {
                     data.status === 'open'
                       ? 'bg-greenColor text-white'
                       : 'bg-[#A855F7] text-white'
-                  } text-sm font-medium px-2 py-0.5 rounded-full">${data.status.toUpperCase()}
+                  } text-sm font-medium px-2 py-0.5 rounded-full capitalize">${data?.status}
                   </li>
                   <li class="before:content-[''] before:text-paragraphColor before:mr-1">${data.author}</li>
                   <li class="before:content-[''] before:text-paragraphColor before:mr-1">${new Date(
@@ -239,7 +238,7 @@ const showModalDataDisplay = data => {
               <div
                 class="bg-readColor/10 max-w-max px-3 py-1 rounded-full gap-1 flex items-center border border-readColor/30">
                 <img src="../assets/icons/BugDroid.png" alt="icons" class="">
-                <h2 class="text-readColor text-[13px] uppercase">${data?.labels[0]}</h2>
+                <h2 class="text-readColor text-[13px] uppercase">${data?.labels?.[0] || 'N/A'}</h2>
               </div>
 
               <!-- help wanted 2-->
@@ -255,7 +254,7 @@ const showModalDataDisplay = data => {
                   data?.labels[1] === 'enhancement'
                     ? 'text-success bg-[#BBF7D0]'
                     : 'text-warningColor'
-                } badge text-[13px] uppercase">${data?.labels[1]}</h2>
+                } badge text-[13px] uppercase">${data?.labels?.[1] || 'N/A'}</h2>
               </div>
 
 
@@ -278,7 +277,7 @@ const showModalDataDisplay = data => {
               <!-- Priority:  -->
               <div class="space-y-2">
                 <p class="text-paragraphColor">Priority:</p>
-                <h2 class="${priorityColor[data?.priority]} py-0.5 px-4 rounded-full max-w-max">${data.priority}</h2>
+                <h2 class="${priorityColor[data?.priority]} py-0.5 px-4 rounded-full max-w-max uppercase">${data.priority}</h2>
               </div>
 
               <div></div>
