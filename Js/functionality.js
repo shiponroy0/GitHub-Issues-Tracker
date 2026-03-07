@@ -142,4 +142,33 @@ const displayAllIssuesData = data => {
   loadingEffect(false);
 };
 
+// Open Button Filter
+const showOpenIssues = () => {
+  loadingEffect(true);
+  const openData = allIssues.filter(item => item.status === 'open');
+  displayAllIssuesData(openData);
+  getIssuesCount.innerHTML = `${openData.length} Issues`;
+  buttonToggle('openButton');
+  loadingEffect(false);
+};
+
+// Closed Button Filter
+const showClosedIssues = () => {
+  loadingEffect(true);
+  const closedData = allIssues.filter(item => item.status === 'closed');
+  displayAllIssuesData(closedData);
+  getIssuesCount.innerHTML = `${closedData.length} Issues`;
+  buttonToggle('ClosedButton');
+  loadingEffect(false);
+};
+
+// All Button Filter
+const showAllIssues = () => {
+  loadingEffect(true);
+  getIssuesCount.innerHTML = `${allIssues.length} Issues`;
+  displayAllIssuesData(allIssues);
+  buttonToggle('allButton');
+  loadingEffect(false);
+};
+
 allIssuesDataFetch();
