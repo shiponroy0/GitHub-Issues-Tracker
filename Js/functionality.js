@@ -9,8 +9,10 @@ let allIssues = [];
 const loadingEffect = status => {
   if (status) {
     getLoadingSection.classList.remove('hidden');
+    cardContainer.classList.add('hidden');
   } else {
     getLoadingSection.classList.add('hidden');
+    cardContainer.classList.remove('hidden');
   }
 };
 
@@ -34,12 +36,14 @@ const buttonToggle = id => {
 // All Issues Data Fetch
 const allIssuesDataFetch = async () => {
   loadingEffect(true);
-  const url = 'https://phi-lab-server.vercel.app/api/v1/lab/issues';
-  const res = await fetch(url);
-  const data = await res.json();
-  allIssues = data.data;
-  displayAllIssuesData(allIssues);
-  loadingEffect(false);
+  setTimeout(async () => {
+    const url = 'https://phi-lab-server.vercel.app/api/v1/lab/issues';
+    const res = await fetch(url);
+    const data = await res.json();
+    allIssues = data.data;
+    displayAllIssuesData(allIssues);
+    loadingEffect(false);
+  }, 100);
 };
 
 // Card Show Data
@@ -146,30 +150,36 @@ const displayAllIssuesData = data => {
 // Open Button Filter
 const showOpenIssues = () => {
   loadingEffect(true);
-  const openData = allIssues.filter(item => item.status === 'open');
-  displayAllIssuesData(openData);
-  getIssuesCount.innerHTML = `${openData.length} Issues`;
-  buttonToggle('openButton');
-  loadingEffect(false);
+  setTimeout(() => {
+    const openData = allIssues.filter(item => item.status === 'open');
+    displayAllIssuesData(openData);
+    getIssuesCount.innerHTML = `${openData.length} Issues`;
+    buttonToggle('openButton');
+    loadingEffect(false);
+  }, 100);
 };
 
 // Closed Button Filter
 const showClosedIssues = () => {
   loadingEffect(true);
-  const closedData = allIssues.filter(item => item.status === 'closed');
-  displayAllIssuesData(closedData);
-  getIssuesCount.innerHTML = `${closedData.length} Issues`;
-  buttonToggle('ClosedButton');
-  loadingEffect(false);
+  setTimeout(() => {
+    const closedData = allIssues.filter(item => item.status === 'closed');
+    displayAllIssuesData(closedData);
+    getIssuesCount.innerHTML = `${closedData.length} Issues`;
+    buttonToggle('ClosedButton');
+    loadingEffect(false);
+  }, 100);
 };
 
 // All Button Filter
 const showAllIssues = () => {
   loadingEffect(true);
-  getIssuesCount.innerHTML = `${allIssues.length} Issues`;
-  displayAllIssuesData(allIssues);
-  buttonToggle('allButton');
-  loadingEffect(false);
+  setTimeout(() => {
+    getIssuesCount.innerHTML = `${allIssues.length} Issues`;
+    displayAllIssuesData(allIssues);
+    buttonToggle('allButton');
+    loadingEffect(false);
+  }, 100);
 };
 
 // Search Issues System Add
