@@ -21,7 +21,45 @@
 
 <body>
 
+  <!-- Header Section -->
+  <header id="" class="">
 
+
+    <nav class="border-b border-gray-200">
+      <div class="containers flex gap-3 flex-wrap items-center justify-center sm:flex-row sm:justify-between">
+
+        <!-- Logo -->
+        <div class="flex gap-2 items-center">
+          <img src="../assets/github-logo.png" alt="img" class="w-10">
+          <h2 class="font-semibold text-lg">GitHub Issues Tracker</h2>
+        </div>
+
+        <!-- Btn  -->
+
+        <div class="flex flex-wrap justify-center items-center gap-3 sm:flex-row">
+
+          <!-- Search input -->
+          <div class="flex gap-2 items-center border-gray-300 border py-1 px-2 rounded-lg">
+            <img src="../assets/icons/icons.png" alt="img">
+            <input id="searchInputValue" type="text" placeholder="Search issues..." class="outline-none">
+          </div>
+
+
+          <div>
+            <button onclick="searchIssues()"
+              class="flex items-center bg-primary py-2 px-4 rounded-lg gap-2 text-white cursor-pointer max-w-max">
+              <!-- <img src="../assats/icons/Plus.png" alt="icons"> -->
+              Search
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </nav>
+
+
+  </header>
 
 
 </body>
