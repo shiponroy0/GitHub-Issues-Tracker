@@ -21,7 +21,69 @@
 
 <body class="customBody">
 
+  <section class="bg-white mx-auto w-[90%] rounded-lg">
 
+    <div class="containers customShadow">
+
+      <!-- icons and Details -->
+      <div class="flex items-center justify-center flex-col bg-white">
+        <img src="assets/github-logo.png" alt="img">
+
+        <!-- Details -->
+        <div class="text-center">
+          <h2 class="text-2xl">GitHub Issues Tracker</h2>
+          <p class="text-[#64748B]">Sign in to manage your issues</p>
+        </div>
+
+        <div class="w-full">
+          <div class="card bg-base-100 w-full shrink-0">
+            <div class="card-body">
+              <fieldset class="fieldset space-y-1">
+
+                <div>
+                  <label class="label text-[#1F2937] font-medium text-lg">Username</label>
+                  <input id="inputUserName" type="email" class="input" placeholder="Enter Username" />
+                  <p class="text-primary">Default: admin</p>
+                </div>
+
+                <div>
+                  <label class="label text-[#1F2937] font-medium text-lg">Password</label>
+                  <input id="inputPassword" type="password" class="input" placeholder="Enter Password" />
+                  <p class="text-primary">Default: admin123</p>
+                </div>
+
+                <div><a class="link link-hover">Forgot password?</a></div>
+                <button id="loginButton" class="btn btn-primary mt-4">Sign In</button>
+
+              </fieldset>
+            </div>
+          </div>
+
+          <div>
+            <p></p>
+            <div class="text-center my-4 text-gray-400">OR</div>
+            <p></p>
+          </div>
+
+          <div class="bg-[#F8FAFC] p-4 rounded-lg text-center">
+            <p class="text-sm text-gray-500 mb-2">Demo Credentials:</p>
+            <p class="text-sm"><span class="font-semibold">Username:</span> admin</p>
+            <p class="text-sm"><span class="font-semibold">Password:</span> admin123</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    </div>
+
+  </section>
+
+  <!-- Script  -->
+  <script src="Js/login.js"></script>
 
 
 </body>
