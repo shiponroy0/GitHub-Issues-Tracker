@@ -4,6 +4,7 @@
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.2.1",
+    "@tailwindcss/line-clamp": "^0.4.4",
     "daisyui": "^5.5.19",
     "tailwindcss": "^4.2.1"
   }

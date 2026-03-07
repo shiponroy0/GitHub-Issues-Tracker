@@ -1,0 +1,145 @@
+const cardContainer = document.getElementById('CardContainers');
+const getIssuesCount = document.getElementById('issuesCount');
+const getSearchInputValue = document.getElementById('searchInputValue');
+const getLoadingSection = document.getElementById('loadingSection');
+const modalContent = document.getElementById('modalContent');
+let allIssues = [];
+
+// loading Function
+const loadingEffect = status => {
+  if (status) {
+    getLoadingSection.classList.remove('hidden');
+  } else {
+    getLoadingSection.classList.add('hidden');
+  }
+};
+
+// Button Toggle Function
+const buttonToggle = id => {
+  const allButton = document.querySelectorAll('.btnAll');
+  allButton.forEach(btn => {
+    btn.classList.remove('btn-primary');
+  });
+
+  // active button
+  if (id === 'allButton') {
+    document.getElementById('allButton').classList.add('btn-primary');
+  } else if (id === 'openButton') {
+    document.getElementById('openButton').classList.add('btn-primary');
+  } else if (id === 'ClosedButton') {
+    document.getElementById('ClosedButton').classList.add('btn-primary');
+  }
+};
+
+// All Issues Data Fetch
+const allIssuesDataFetch = async () => {
+  loadingEffect(true);
+  const url = 'https://phi-lab-server.vercel.app/api/v1/lab/issues';
+  const res = await fetch(url);
+  const data = await res.json();
+  allIssues = data.data;
+  displayAllIssuesData(allIssues);
+  loadingEffect(false);
+};
+
+// Card Show Data
+const displayAllIssuesData = data => {
+  loadingEffect(true);
+  cardContainer.innerHTML = '';
+  modalContent.innerHTML = '';
+
+  const priorityColor = {
+    high: 'bg-red-500/10 text-red-500',
+    medium: 'bg-yellow-500/10 text-yellow-500',
+    low: 'bg-[#EEEFF2] text-[#9CA3AF]',
+  };
+
+  data.forEach(item => {
+    const itemDiv = document.createElement('div');
+    itemDiv.className = `bg-white border-t-4
+     ${item.status === 'open' ? 'border-success' : 'border-[#A855F7]'} px-5 py-4 rounded-lg cardCustomShadow space-y-3`;
+
+    // Click To Open Modal
+    itemDiv.addEventListener('click', () => {
+      const modal = document.getElementById('my_modal_4');
+
+      showModalDataFetch(item.id);
+
+      modal.showModal();
+    });
+
+    // Card Render
+    itemDiv.innerHTML = `
+
+                <div class="border-b border-gray-200 space-y-2">
+
+              <!-- Status High medium Low -->
+              <div class="flex items-center justify-between">
+
+                <!-- image icons -->
+                <div>
+                  <img src="${item?.status === 'open' ? '../assets/Open-Status.png' : '../assets/Closed- Status .png'}" alt="icons">
+                </div>
+
+                <!-- status -->
+                <div>
+                  <h4 class="${priorityColor[item?.priority]} uppercase text-lg font-medium max-w-max px-8 py-1 rounded-full
+                   ">${item?.priority}</h4>
+                </div>
+
+
+              </div>
+
+
+              <!-- card Details -->
+              <div class="space-y-4">
+                <h2 class="text-2xl font-semibold text-headingColor">${item?.title}</h2>
+                <p class="text-paragraphColor line-clamp-2"> ${item?.description}
+                </p>
+              </div>
+
+              <!-- Help Bug Wanted -->
+              <div class="flex items-center gap-2 pb-2">
+
+                <!-- Bug -->
+                <div
+                  class="bg-readColor/10 max-w-max px-3 py-1 rounded-full gap-1 flex items-center border border-readColor/30">
+                  <img src="../assets/icons/BugDroid.png" alt="icons" class="">
+                  <h2 class="text-readColor text-[13px] uppercase">${item?.labels[0]}</h2>
+                </div>
+
+                <!-- help wanted -->
+                <div
+                  class=" max-w-max px-3 py-1 rounded-full flex items-center border ${
+                    item?.labels[1] === 'enhancement'
+                      ? 'bg-[#BBF7D0]/25 border-[#00A96E]/20'
+                      : 'bg-warningLight/80 border-warningColor'
+                  }">
+                  <img src="${item?.labels[1] === 'enhancement' ? '../assets/icons/Sparkle.png' : '../assets/icons/Lifebuoy.png'}" alt="icons" >
+                  <h2 class="${
+                    item?.labels[1] === 'enhancement'
+                      ? 'text-success bg-[#BBF7D0]'
+                      : 'text-warningColor'
+                  } badge text-[13px] uppercase">${item?.labels[1]}</h2>
+                </div>
+
+
+              </div>
+
+            </div>
+
+            <div class="text-paragraphColor">
+              <h2>${item.author}</h2>
+              <p>${new Date(item.createdAt).toLocaleDateString()}</p>
+            </div>
+    
+    `;
+
+    // Count Issues And AppendChild
+    getIssuesCount.innerHTML = `${allIssues.length} Issues`;
+    cardContainer.appendChild(itemDiv);
+  });
+  loadingEffect(false);
+};
+
+allIssuesDataFetch();

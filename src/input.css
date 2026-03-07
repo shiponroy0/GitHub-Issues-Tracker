@@ -3,6 +3,10 @@
 
 /* Custom Color And Font */
 @theme {
+  /* Primary Colors  */
+  --color-primaryColor: ;
+  --color-primaryLight: ;
+
   /* Text Color  */
   --color-headingColor: #1f2937;
   --color-paragraphColor: #64748b;
