@@ -1,0 +1,61 @@
+@import 'tailwindcss';
+@plugin "daisyui";
+
+/* Custom Color And Font */
+@theme {
+  /* Text Color  */
+  --color-headingColor: #1f2937;
+  --color-paragraphColor: #64748b;
+
+  /* Color */
+  --color-readColor: #ef4444;
+  --color-greenColor: #00a96e;
+  --color-greenLight: #cbfadb;
+  --color-warningLight: #fde68a;
+  --color-warningColor: #d97706;
+
+  /* Custom Font */
+  --font-primaryFont: 'Geist', sans-serif;
+}
+
+/* Custom Class And Id */
+@layer utilities {
+  body {
+    font-family: var(--font-primaryFont);
+  }
+  p {
+    font-size: 14px;
+  }
+
+  /* Custom Container */
+  .containers {
+    @apply max-w-[1440px] mx-auto px-2 py-2;
+  }
+  .paddingXl {
+    @apply py-4 px-2 sm:py-5 lg:py-8;
+  }
+  .customBody {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    margin: 0 auto;
+    align-items: center;
+    @apply max-w-md mx-auto;
+  }
+  .customShadow {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  }
+  .paddingXl {
+    @apply py-10;
+  }
+  .cardCustomShadow {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    background-color: transparent;
+    border: none;
+  }
+}
