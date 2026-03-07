@@ -171,4 +171,19 @@ const showAllIssues = () => {
   loadingEffect(false);
 };
 
+// Search Issues System Add
+const searchIssues = async () => {
+  loadingEffect(true);
+  const searchText = getSearchInputValue.value.toLowerCase();
+
+  const url = `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchText}`;
+  const res = await fetch(url);
+  const data = await res.json();
+
+  displayAllIssuesData(data.data);
+  getIssuesCount.innerHTML = `${data.data.length} Issues`;
+  buttonToggle('');
+  loadingEffect(false);
+};
+
 allIssuesDataFetch();
